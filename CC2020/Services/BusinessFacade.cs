@@ -4,11 +4,11 @@ using CC2020.Models;
 
 namespace CC2020.Services
 {
-    public class BusinessService
+    public class BusinessFacade
     {
         private PayService _payservice;
 
-        public BusinessService()
+        public BusinessFacade()
         {
             _payservice = new PayService();
         }

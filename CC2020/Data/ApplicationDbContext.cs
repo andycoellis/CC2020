@@ -12,10 +12,10 @@ namespace CC2020.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<PayAgreement> PayAgreements { get; set; }
-        public DbSet<Timesheet> Timesheets { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<PayAgreement> PayAgreements { get; set; }
+        public virtual DbSet<Timesheet> Timesheets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

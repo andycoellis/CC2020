@@ -30,5 +30,6 @@
     <Folder Include="Data\Repositories\" />
     <Folder Include="Data\Repositories\IRepositories\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\Payslip\" />
   </ItemGroup>
 </Project>

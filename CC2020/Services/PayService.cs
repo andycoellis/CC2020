@@ -22,6 +22,7 @@ namespace CC2020.Services
                             )
         {
             EmpId = $"{employee.EmployeeID}";
+            EmployeeName = employee.Name;
             CompanyName = company.CompanyName;
             CompanyABN = $"{company.ABN}";
             PayPeriod = $"" +
@@ -36,6 +37,7 @@ namespace CC2020.Services
         }
 
         public string EmpId{ get; }
+        public string EmployeeName { get; }
         public string CompanyName { get; }
         public string CompanyABN { get; }
         public string PayPeriod { get; }
@@ -68,7 +70,7 @@ namespace CC2020.Services
             }
 
             //Helper method for calculating hours worked in a day
-            Func<Timesheet, double> hoursWorked = x =>  Convert.ToDouble((x.EndTime - x.StartTime) - x.Break);
+            Func<Timesheet, double> hoursWorked = x =>  (double)((x.EndTime - x.StartTime) - x.Break).TotalHours;
 
             var firstDate = employeeTimesheets[0].Date;
 
