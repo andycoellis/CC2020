@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CC2020.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200503075947_changeModels")]
-    partial class changeModels
+    [Migration("20200508075438_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

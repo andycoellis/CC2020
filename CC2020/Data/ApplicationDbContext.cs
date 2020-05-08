@@ -12,10 +12,10 @@ namespace CC2020.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<PayAgreement> PayAgreements { get; set; }
-        public DbSet<Timesheet> Timesheets { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<PayAgreement> PayAgreements { get; set; }
+        public virtual DbSet<Timesheet> Timesheets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -37,6 +37,11 @@ namespace CC2020.Data
 
             builder.Entity<Timesheet>().HasOne(x => x.Company).WithMany(x => x.Timesheets)
                 .HasForeignKey(x => x.CompanyID);
+
+            //Applying Rules for auto incrementing pk entries which arent user defined
+            builder.Entity<Timesheet>().Property(x => x.ID).ValueGeneratedOnAdd();
+
+            builder.Entity<PayAgreement>().Property(x => x.ID).ValueGeneratedOnAdd();
         }
     }
 }

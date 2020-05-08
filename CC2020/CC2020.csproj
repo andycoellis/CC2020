@@ -29,5 +29,10 @@
   <ItemGroup>
     <Folder Include="Data\Repositories\" />
     <Folder Include="Data\Repositories\IRepositories\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Payslip\" />
+    <Folder Include="Views\Timesheet\" />
+    <Folder Include="Views\PayAgreement\" />
+    <Folder Include="Views\Employee\" />
   </ItemGroup>
 </Project>
