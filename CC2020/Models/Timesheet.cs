@@ -10,6 +10,7 @@ namespace CC2020.Models
         public int ID { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Required]

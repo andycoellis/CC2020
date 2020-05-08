@@ -37,6 +37,11 @@ namespace CC2020.Data
 
             builder.Entity<Timesheet>().HasOne(x => x.Company).WithMany(x => x.Timesheets)
                 .HasForeignKey(x => x.CompanyID);
+
+            //Applying Rules for auto incrementing pk entries which arent user defined
+            builder.Entity<Timesheet>().Property(x => x.ID).ValueGeneratedOnAdd();
+
+            builder.Entity<PayAgreement>().Property(x => x.ID).ValueGeneratedOnAdd();
         }
     }
 }

@@ -7,6 +7,7 @@ using CC2020.Models;
 using CC2020.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace CC2020.Controllers
 {
@@ -30,27 +31,52 @@ namespace CC2020.Controllers
         {
             try
             {
-                var empID = 4444;
-                var companyID = 40907025013;
-                var startDate = new DateTime(2020, 2, 17);
-                var endDate = startDate.AddDays(8);
+                //var empID = 4444;
+                //var companyID = 40907025013;
+                //var startDate = new DateTime(2020, 2, 17);
+                //var endDate = startDate.AddDays(8);
 
-                var payagreement = unitOfWork.PayAgreements.SingleOrDefault(
-                    x => x.EmployeeID == empID && x.CompanyID == companyID);
+                //var payagreement = unitOfWork.PayAgreements.SingleOrDefault(
+                //    x => x.EmployeeID == empID && x.CompanyID == companyID);
 
-                var employee = unitOfWork.Employees.SingleOrDefault(x => x.EmployeeID == empID);
-                var company = unitOfWork.Companies.SingleOrDefault(x => x.ABN == companyID);
+                //var employee = unitOfWork.Employees.SingleOrDefault(x => x.EmployeeID == empID);
+                //var company = unitOfWork.Companies.SingleOrDefault(x => x.ABN == companyID);
 
-                var timesheets = unitOfWork.Timesheets.Find(
-                    x => x.EmployeeID == empID && x.CompanyID == companyID
-                    ).Where(x => x.Date.Date >= startDate && x.Date.Date < endDate);
+                //var timesheets = unitOfWork.Timesheets.Find(
+                //    x => x.EmployeeID == empID && x.CompanyID == companyID
+                //    ).Where(x => x.Date.Date >= startDate && x.Date.Date < endDate);
 
 
-                var foo = businessRules.EmployeeWeeklyTimeSheet(employee, company, timesheets.ToList(), payagreement, 999);
+                //var foo = businessRules.EmployeeWeeklyTimeSheet(employee, company, timesheets.ToList(), payagreement, 999);
 
             }
 
             catch(Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Timesheet timesheet)
+        {
+            try
+            {
+                //Extend the key id entry
+                //var id = unitOfWork.Timesheets.GetAll().OrderByDescending(x => x.ID).FirstOrDefault().ID + 1;
+
+                if(timesheet == null)
+                {
+                    new RedirectToActionResult("Index", "Home", null);
+                }
+
+                //timesheet.ID = id;
+                unitOfWork.Timesheets.Add(timesheet);
+                unitOfWork.Complete();
+            }
+            catch(Exception e)
+
             {
                 _logger.LogError(e.Message);
             }
