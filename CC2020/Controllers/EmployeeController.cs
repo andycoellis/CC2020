@@ -27,7 +27,7 @@ namespace CC2020.Controllers
         {
             try
             {
-                var check = unitOfWork.Employees.SingleOrDefault(x => x.EmployeeID == employee.EmployeeID);
+                var check = unitOfWork.Employees.SingleOrDefault(x => x.Id == employee.Id);
                 if (check != null)
                 {
                     _logger.LogInformation("Attempted to create a user that already exists");

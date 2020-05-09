@@ -39,43 +39,6 @@ namespace CC2020.Migrations
                     b.ToTable("Companies");
                 });
 
-            modelBuilder.Entity("CC2020.Models.Employee", b =>
-                {
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3);
-
-                    b.Property<string>("TFN")
-                        .HasColumnType("nvarchar(9)")
-                        .HasMaxLength(9);
-
-                    b.HasKey("EmployeeID");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("CC2020.Models.PayAgreement", b =>
                 {
                     b.Property<int>("ID")
@@ -83,14 +46,15 @@ namespace CC2020.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CompanyID")
+                    b.Property<long>("CompanyABN")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
+                    b.Property<string>("EmployeeID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("PayRate")
                         .HasColumnType("decimal(18,2)");
@@ -106,7 +70,7 @@ namespace CC2020.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyABN");
 
                     b.HasIndex("EmployeeID");
 
@@ -123,14 +87,15 @@ namespace CC2020.Migrations
                     b.Property<TimeSpan>("Break")
                         .HasColumnType("time");
 
-                    b.Property<long>("CompanyID")
+                    b.Property<long>("CompanyABN")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
+                    b.Property<string>("EmployeeID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<TimeSpan>("EndTime")
                         .HasColumnType("time");
@@ -140,7 +105,7 @@ namespace CC2020.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyABN");
 
                     b.HasIndex("EmployeeID");
 
@@ -210,6 +175,10 @@ namespace CC2020.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -261,6 +230,8 @@ namespace CC2020.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -347,11 +318,45 @@ namespace CC2020.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CC2020.Models.Employee", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
+
+                    b.Property<string>("TFN")
+                        .HasColumnType("nvarchar(9)")
+                        .HasMaxLength(9);
+
+                    b.HasDiscriminator().HasValue("Employee");
+                });
+
             modelBuilder.Entity("CC2020.Models.PayAgreement", b =>
                 {
                     b.HasOne("CC2020.Models.Company", "Company")
                         .WithMany("PayAgreements")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyABN")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -366,7 +371,7 @@ namespace CC2020.Migrations
                 {
                     b.HasOne("CC2020.Models.Company", "Company")
                         .WithMany("Timesheets")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyABN")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -21,7 +21,7 @@ namespace CC2020.Services
                             double sunHours
                             )
         {
-            EmpId = $"{employee.EmployeeID}";
+            EmpId = $"{employee.Id}";
             EmployeeName = employee.Name;
             CompanyName = company.CompanyName;
             CompanyABN = $"{company.ABN}";

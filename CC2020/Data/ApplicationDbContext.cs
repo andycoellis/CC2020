@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CC2020.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +29,7 @@ namespace CC2020.Data
                 .HasForeignKey(x => x.EmployeeID);
 
             builder.Entity<PayAgreement>().HasOne(x => x.Company).WithMany(x => x.PayAgreements)
-                .HasForeignKey(x => x.CompanyID);
+                .HasForeignKey(x => x.CompanyABN);
 
 
             //Timesheets
@@ -36,7 +37,7 @@ namespace CC2020.Data
                 .HasForeignKey(x => x.EmployeeID);
 
             builder.Entity<Timesheet>().HasOne(x => x.Company).WithMany(x => x.Timesheets)
-                .HasForeignKey(x => x.CompanyID);
+                .HasForeignKey(x => x.CompanyABN);
 
             //Applying Rules for auto incrementing pk entries which arent user defined
             builder.Entity<Timesheet>().Property(x => x.ID).ValueGeneratedOnAdd();

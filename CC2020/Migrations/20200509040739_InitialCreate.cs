@@ -39,7 +39,15 @@ namespace CC2020.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 40, nullable: true),
+                    DOB = table.Column<DateTime>(nullable: true),
+                    TFN = table.Column<string>(maxLength: 9, nullable: true),
+                    Address = table.Column<string>(maxLength: 50, nullable: true),
+                    City = table.Column<string>(maxLength: 40, nullable: true),
+                    State = table.Column<string>(maxLength: 3, nullable: true),
+                    PostCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,24 +65,6 @@ namespace CC2020.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.ABN);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    EmployeeID = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 40, nullable: false),
-                    DOB = table.Column<DateTime>(nullable: false),
-                    TFN = table.Column<string>(maxLength: 9, nullable: true),
-                    Address = table.Column<string>(maxLength: 50, nullable: true),
-                    City = table.Column<string>(maxLength: 40, nullable: true),
-                    State = table.Column<string>(maxLength: 3, nullable: true),
-                    PostCode = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.EmployeeID);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,23 +184,23 @@ namespace CC2020.Migrations
                     SaturdayRate = table.Column<double>(nullable: false),
                     SundayRate = table.Column<double>(nullable: false),
                     PublicHolidayRate = table.Column<double>(nullable: false),
-                    EmployeeID = table.Column<int>(nullable: false),
-                    CompanyID = table.Column<long>(nullable: false)
+                    EmployeeID = table.Column<string>(nullable: false),
+                    CompanyABN = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PayAgreements", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_PayAgreements_Companies_CompanyID",
-                        column: x => x.CompanyID,
+                        name: "FK_PayAgreements_Companies_CompanyABN",
+                        column: x => x.CompanyABN,
                         principalTable: "Companies",
                         principalColumn: "ABN",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PayAgreements_Employees_EmployeeID",
+                        name: "FK_PayAgreements_AspNetUsers_EmployeeID",
                         column: x => x.EmployeeID,
-                        principalTable: "Employees",
-                        principalColumn: "EmployeeID",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -224,23 +214,23 @@ namespace CC2020.Migrations
                     StartTime = table.Column<TimeSpan>(nullable: false),
                     EndTime = table.Column<TimeSpan>(nullable: false),
                     Break = table.Column<TimeSpan>(nullable: false),
-                    EmployeeID = table.Column<int>(nullable: false),
-                    CompanyID = table.Column<long>(nullable: false)
+                    EmployeeID = table.Column<string>(nullable: false),
+                    CompanyABN = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Timesheets", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Timesheets_Companies_CompanyID",
-                        column: x => x.CompanyID,
+                        name: "FK_Timesheets_Companies_CompanyABN",
+                        column: x => x.CompanyABN,
                         principalTable: "Companies",
                         principalColumn: "ABN",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Timesheets_Employees_EmployeeID",
+                        name: "FK_Timesheets_AspNetUsers_EmployeeID",
                         column: x => x.EmployeeID,
-                        principalTable: "Employees",
-                        principalColumn: "EmployeeID",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -284,9 +274,9 @@ namespace CC2020.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PayAgreements_CompanyID",
+                name: "IX_PayAgreements_CompanyABN",
                 table: "PayAgreements",
-                column: "CompanyID");
+                column: "CompanyABN");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PayAgreements_EmployeeID",
@@ -294,9 +284,9 @@ namespace CC2020.Migrations
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Timesheets_CompanyID",
+                name: "IX_Timesheets_CompanyABN",
                 table: "Timesheets",
-                column: "CompanyID");
+                column: "CompanyABN");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Timesheets_EmployeeID",
@@ -331,13 +321,10 @@ namespace CC2020.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Companies");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "AspNetUsers");
         }
     }
 }
