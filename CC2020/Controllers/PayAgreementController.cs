@@ -33,7 +33,7 @@ namespace CC2020.Controllers
             {
                 var checkId = unitOfWork.PayAgreements.SingleOrDefault(x =>
                                             x.EmployeeID == payAgreement.EmployeeID &&
-                                            x.CompanyID == payAgreement.CompanyID
+                                            x.CompanyABN == payAgreement.CompanyABN
                                             );
                 if (checkId != null)
                 {

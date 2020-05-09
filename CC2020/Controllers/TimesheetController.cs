@@ -30,8 +30,8 @@ namespace CC2020.Controllers
         {
             try
             {
-                var checkEmp = unitOfWork.Employees.SingleOrDefault(x => x.EmployeeID == timesheet.EmployeeID);
-                var checkComp = unitOfWork.Companies.SingleOrDefault(x => x.ABN == timesheet.CompanyID);
+                var checkEmp = unitOfWork.Employees.SingleOrDefault(x => x.Id == timesheet.EmployeeID);
+                var checkComp = unitOfWork.Companies.SingleOrDefault(x => x.ABN == timesheet.CompanyABN);
 
                 if (checkEmp == null || checkComp == null)
                 {
