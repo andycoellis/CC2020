@@ -10,12 +10,8 @@ namespace CC2020.Models
     {
         public Employee() : base() { }
 
-        [Required]
         [MaxLength(40), RegularExpression(@"^[^\s][A-Za-z\s]+[^\s]$")]
         public string Name { get; set; }
-
-        [Required]
-        public DateTime DOB { get; set; }
 
         //Identification Purposes Only
         [StringLength(9), RegularExpression(@"^[\d]+$", ErrorMessage = "An Individual TFN can only be 9 digits long")]

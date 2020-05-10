@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CC2020.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<Employee>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CC2020.Data;
 using CC2020.Models;
+using CC2020.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,36 +14,43 @@ namespace CC2020.Controllers
     public class TimesheetController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly UserManager<Employee> _userManager;
+
+        private readonly BusinessFacade businessRules;
+
 
         private readonly ILogger _logger;
 
-        public TimesheetController(ApplicationDbContext context, ILogger<TimesheetController> logger)
+        public TimesheetController(UserManager<Employee> userManager, ApplicationDbContext context, ILogger<TimesheetController> logger)
         {
             unitOfWork = new UnitOfWork(context);
+            businessRules = new BusinessFacade();
+
+            _userManager = userManager;
+
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View("Create");
         }
 
+        [HttpPost]
         public IActionResult Create(Timesheet timesheet)
         {
             try
             {
-                var checkEmp = unitOfWork.Employees.SingleOrDefault(x => x.Id == timesheet.EmployeeID);
-                var checkComp = unitOfWork.Companies.SingleOrDefault(x => x.ABN == timesheet.CompanyABN);
-
-                if (checkEmp == null || checkComp == null)
+                if (timesheet == null)
                 {
                     new RedirectToActionResult("Index", "Home", null);
                 }
 
                 unitOfWork.Timesheets.Add(timesheet);
+                unitOfWork.Complete();
             }
-
             catch (Exception e)
+
             {
                 _logger.LogError(e.Message);
             }
