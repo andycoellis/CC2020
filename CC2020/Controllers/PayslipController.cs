@@ -8,9 +8,11 @@ using CC2020.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CC2020.Controllers
 {
+    [Authorize]
     public class PayslipController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

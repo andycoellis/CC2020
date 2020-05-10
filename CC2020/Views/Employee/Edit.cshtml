@@ -1,0 +1,60 @@
+﻿@model CC2020.Models.Employee
+@{
+    var title = ViewData["Title"] = "Edit Employee Details";
+}
+
+<h2>Edit Employee Details</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Employee" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="State" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                @Html.DropDownList("stateID", new SelectList(ViewBag.Dropdown, "Value", "State"), $"{Model.State}", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label"></label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TFN" class="control-label"></label>
+                <input asp-for="TFN" class="form-control" />
+                <span asp-validation-for="TFN" class="text-danger"></span>
+                @Html.ValidationMessage("TfnFailed", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
