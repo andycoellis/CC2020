@@ -1,56 +1,5 @@
-﻿@model CC2020.Models.Timesheet
-@{
-    var title = ViewData["Title"] = "Payslip";
+﻿@{
+    var title = ViewData["Title"] = "Payslip Index";
 }
 
-<h1>@title Submission Form</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-
-            <div class="form-group">
-                <label asp-for="EmployeeID" class="control-label"></label>
-                <input asp-for="EmployeeID" class="form-control" />
-                <span asp-validation-for="EmployeeID" class="text-danger"></span>
-            </div>
-
-
-            <div class="form-group">
-                <label asp-for="CompanyABN" class="control-label"></label>
-                <input asp-for="CompanyABN" class="form-control" />
-                <span asp-validation-for="CompanyABN" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Break" class="control-label"></label>
-                <input asp-for="Break" class="form-control" />
-                <span asp-validation-for="Break" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Submit Timesheet" class="btn btn-primary" />
-            </div>
-
-        </form>
-    </div>
-</div>
+<h1>@title To be implemented</h1>
