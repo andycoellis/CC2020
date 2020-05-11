@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CC2020.Data;
 using CC2020.Models;
 using CC2020.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CC2020.Controllers
 {
+    [Authorize]
     public class TimesheetController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -33,7 +37,41 @@ namespace CC2020.Controllers
 
         public IActionResult Index()
         {
-            return View("Create");
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                return View();
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
+            return new RedirectToActionResult("Index", "Home", null);
+        }
+
+        public IActionResult Create()
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var payAgrements = unitOfWork.Employees.GetEmployeePayAgreements(userId);
+
+                ViewBag.AllPayAgreements = payAgrements;
+                List<double> breakTimes = new List<double> { 0, 0.5, 1 };
+                ViewBag.BreakTimes = breakTimes;
+
+                var timesheet = new Timesheet { EmployeeID = userId };
+
+                return View(timesheet);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);                
+            }
+
+            return new RedirectToActionResult("Index", "Home", null);
         }
 
         [HttpPost]
@@ -55,7 +93,7 @@ namespace CC2020.Controllers
                 _logger.LogError(e.Message);
             }
 
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int timesheetID)

@@ -8,17 +8,17 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-
             <div class="form-group">
-                <label asp-for="EmployeeID" class="control-label"></label>
-                <input asp-for="EmployeeID" class="form-control" />
-                <span asp-validation-for="EmployeeID" class="text-danger"></span>
-            </div>
 
+                <input type="hidden" asp-for="EmployeeID" />
 
-            <div class="form-group">
-                <label asp-for="CompanyABN" class="control-label"></label>
-                <input asp-for="CompanyABN" class="form-control" />
+                <label asp-for="Company" class="control-label"></label>
+                <select id="CompanyABN" name="CompanyABN">
+                    @foreach (var payAgreement in ViewBag.AllPayAgreements)
+                    {
+                        <option value="@payAgreement.Company.ABN">@payAgreement.Company.CompanyName</option>
+                    }
+                </select>
                 <span asp-validation-for="CompanyABN" class="text-danger"></span>
             </div>
 
@@ -42,7 +42,12 @@
 
             <div class="form-group">
                 <label asp-for="Break" class="control-label"></label>
-                <input asp-for="Break" class="form-control" />
+                <select id="Break" name="Break">
+                    @foreach (var breakTime in ViewBag.BreakTimes)
+                    {
+                        <option value="@breakTime">@breakTime</option>
+                    }
+                </select>
                 <span asp-validation-for="Break" class="text-danger"></span>
             </div>
 
