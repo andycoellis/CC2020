@@ -147,7 +147,7 @@ namespace CC2020.Data
                     SaturdayRate = 1.3,
                     SundayRate = 1.5,
                     PublicHolidayRate = 1.5,
-                    EmployeeID = "4444",
+                    EmployeeID = "3333",
                     CompanyABN = 70102471414
                 },
                 new PayAgreement
@@ -157,7 +157,7 @@ namespace CC2020.Data
                     SaturdayRate = 1.3,
                     SundayRate = 1.5,
                     PublicHolidayRate = 1.5,
-                    EmployeeID = "4444",
+                    EmployeeID = "1111",
                     CompanyABN = 70102471414
                 },
                 new PayAgreement
