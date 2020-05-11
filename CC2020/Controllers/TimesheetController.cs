@@ -62,7 +62,13 @@ namespace CC2020.Controllers
                 List<double> breakTimes = new List<double> { 0, 0.5, 1 };
                 ViewBag.BreakTimes = breakTimes;
 
-                var timesheet = new Timesheet { EmployeeID = userId };
+                var timesheet = new Timesheet
+                {
+                    EmployeeID = userId,
+                    Date = DateTime.Now.Date,
+                    StartTime = new TimeSpan(DateTime.Now.TimeOfDay.Hours, 0, 0),
+                    EndTime = new TimeSpan(DateTime.Now.TimeOfDay.Hours + 1, 0, 0)
+                };
 
                 return View(timesheet);
             }
