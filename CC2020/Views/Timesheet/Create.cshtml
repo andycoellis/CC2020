@@ -2,60 +2,74 @@
 @{
     var title = ViewData["Title"] = "Timesheet";
 }
+@if(ViewBag.AllPayAgreements.Count < 1)
+{
+    <h2>Warning: No Pay Agreements Found</h2>
+    <p>please contact your place of employment to add your agreement</p>
+}
+else
+{
+    <h1>@title Submission Form</h1>
 
-<h1>@title Submission Form</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div class="form-group">
+                    <input type="hidden" asp-for="EmployeeID" />
 
-                <input type="hidden" asp-for="EmployeeID" />
+                    <label asp-for="Company" class="control-label"></label>
+                    <select id="CompanyABN" name="CompanyABN">
+                        @foreach (var payAgreement in ViewBag.AllPayAgreements)
+                        {
+                            <option value="@payAgreement.Company.ABN">@payAgreement.Company.CompanyName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CompanyABN" class="text-danger"></span>
+                </div>
 
-                <label asp-for="Company" class="control-label"></label>
-                <select id="CompanyABN" name="CompanyABN">
-                    @foreach (var payAgreement in ViewBag.AllPayAgreements)
-                    {
-                        <option value="@payAgreement.Company.ABN">@payAgreement.Company.CompanyName</option>
-                    }
-                </select>
-                <span asp-validation-for="CompanyABN" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" asp-format="{0:dd/MM/yyyy}" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="StartTime" class="control-label"></label>
+                    <select asp-for="StartTime" asp-items="Model.ListOfTimeIntervals" class="form-control"></select>
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="EndTime" class="control-label"></label>
+                    <select asp-for="EndTime" asp-items="Model.ListOfTimeIntervals" class="form-control"></select>
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Break" class="control-label"></label>
+                    <select id="Break" name="Break">
+                        @foreach (var breakTime in ViewBag.BreakTimes)
+                        {
+                            <option value="@breakTime.Value">@breakTime.Key</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Break" class="text-danger"></span>
+                </div>
+                <div>
+                    <a>@Html.ValidationMessage("CustomError", new { @class = "text-danger" })</a>
+                </div>
+                <div class="form-group">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    <input type="submit" value="Submit Timesheet" class="btn btn-primary" />
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Break" class="control-label"></label>
-                <select id="Break" name="Break">
-                    @foreach (var breakTime in ViewBag.BreakTimes)
-                    {
-                        <option value="@breakTime">@breakTime</option>
-                    }
-                </select>
-                <span asp-validation-for="Break" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Submit Timesheet" class="btn btn-primary" />
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

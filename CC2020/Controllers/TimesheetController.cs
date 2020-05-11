@@ -59,7 +59,14 @@ namespace CC2020.Controllers
                 var payAgrements = unitOfWork.Employees.GetEmployeePayAgreements(userId);
 
                 ViewBag.AllPayAgreements = payAgrements;
-                List<double> breakTimes = new List<double> { 0, 0.5, 1 };
+
+                var breakTimes = new Dictionary<string, TimeSpan>
+                    {
+                        { "No Break", new TimeSpan(0,0,0)},
+                        { "30 Minutes", new TimeSpan (0,30,0)},
+                        { "1 Hour", new TimeSpan (1,0,0)}
+                    };
+
                 ViewBag.BreakTimes = breakTimes;
 
                 var timesheet = new Timesheet
@@ -88,6 +95,37 @@ namespace CC2020.Controllers
                 if (timesheet == null)
                 {
                     new RedirectToActionResult("Index", "Home", null);
+                }
+
+                if (
+                    timesheet.Date < DateTime.Now.AddDays(-((int)DateTime.Now.DayOfWeek - 1)).Date ||
+                    timesheet.Date > DateTime.Now.AddDays(-((int)DateTime.Now.DayOfWeek - 1)).AddDays(6).Date
+                    )
+                    ModelState.AddModelError("CustomError", "You must enter a date in this week.");
+
+                var result = (timesheet.EndTime - timesheet.StartTime - timesheet.Break)/60;
+                var dec = (result.Ticks / 20) / 60 / 60;
+                if (dec <= 0)
+                    ModelState.AddModelError("CustomError", "The times submitted were invalid");
+
+                if (ModelState.ErrorCount > 0)
+                {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var payAgrements = unitOfWork.Employees.GetEmployeePayAgreements(userId);
+
+                    ViewBag.AllPayAgreements = payAgrements;
+
+                    var breakTimes = new Dictionary<string, TimeSpan>
+                    {
+                        { "No Break", new TimeSpan(0,0,0)},
+                        { "30 Minutes", new TimeSpan (0,30,0)},
+                        { "1 Hour", new TimeSpan (1,0,0)}
+                    };  
+
+                    ViewBag.BreakTimes = breakTimes;
+
+                    return View(timesheet);
+
                 }
 
                 unitOfWork.Timesheets.Add(timesheet);
