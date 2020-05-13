@@ -34,6 +34,10 @@ namespace CC2020.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40);
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ABN");
 
                     b.ToTable("Companies");
