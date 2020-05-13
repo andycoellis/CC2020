@@ -58,7 +58,8 @@ namespace CC2020.Migrations
                 {
                     ABN = table.Column<long>(nullable: false),
                     CompanyName = table.Column<string>(maxLength: 40, nullable: false),
-                    Address = table.Column<string>(maxLength: 50, nullable: false)
+                    Address = table.Column<string>(maxLength: 50, nullable: false),
+                    Email = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

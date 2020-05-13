@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CC2020.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200511081734_InitialCreate")]
+    [Migration("20200513070451_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,10 @@ namespace CC2020.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ABN");
 

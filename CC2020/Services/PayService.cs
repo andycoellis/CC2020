@@ -34,6 +34,8 @@ namespace CC2020.Services
             BaseHours = $"{baseHours}";
             SatHours = $"{satHours}";
             SunHours = $"{sunHours}";
+            ReceiverAddress = $"{employee.Email}";
+            SenderAddress = $"{company.Email}";
         }
 
         public string EmpId{ get; }
@@ -47,7 +49,8 @@ namespace CC2020.Services
         public string BaseHours { get; }
         public string SatHours { get; }
         public string SunHours { get; }
-
+        public string SenderAddress { get; }
+        public string ReceiverAddress { get; }
 
     }
 

@@ -102,20 +102,23 @@ namespace CC2020.Data
                 {
                     ABN = 12903767844,
                     CompanyName = "Square and Compass",
-                    Address = "222 Clarendon Street, East Melbourne 3022"
+                    Address = "222 Clarendon Street, East Melbourne 3022",
+                    Email = "andycoellis@gmail.com"
                 }
                 ,
                 new Company
                 {
                     ABN = 40907025013,
                     CompanyName = "Barry",
-                    Address = "85 High Street, Northcote 3070"
+                    Address = "85 High Street, Northcote 3070",
+                    Email = "andycoellis@gmail.com"
                 },
                 new Company
                 {
                     ABN = 70102471414,
                     CompanyName = "Fifty Acres",
-                    Address = "38 Bridge Road, Richmond 3012"
+                    Address = "38 Bridge Road, Richmond 3012",
+                    Email = "andycoellis@gmail.com"
                 });
 
 
