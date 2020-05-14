@@ -17,6 +17,7 @@ namespace CC2020.Data
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<PayAgreement> PayAgreements { get; set; }
         public virtual DbSet<Timesheet> Timesheets { get; set; }
+        public virtual DbSet<Payslip> Payslips { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -39,10 +40,21 @@ namespace CC2020.Data
             builder.Entity<Timesheet>().HasOne(x => x.Company).WithMany(x => x.Timesheets)
                 .HasForeignKey(x => x.CompanyABN);
 
+
+            //Payslips
+            builder.Entity<Payslip>().HasOne(x => x.Employee).WithMany(x => x.Payslips)
+                .HasForeignKey(x => x.EmployeeID);
+
+            builder.Entity<Payslip>().HasOne(x => x.Company).WithMany(x => x.Payslips)
+                .HasForeignKey(x => x.CompanyABN);
+
+
             //Applying Rules for auto incrementing pk entries which arent user defined
             builder.Entity<Timesheet>().Property(x => x.ID).ValueGeneratedOnAdd();
 
             builder.Entity<PayAgreement>().Property(x => x.ID).ValueGeneratedOnAdd();
+
+            builder.Entity<Payslip>().Property(x => x.ID).ValueGeneratedOnAdd();
         }
     }
 }
