@@ -94,7 +94,7 @@ namespace CC2020.Data
             user4.PasswordHash = hasher.HashPassword(user4, "Testing88!");
             user4.SecurityStamp = Guid.NewGuid().ToString();
 
-            dummy.Employees.AddRange(user1,user2,user3,user4);
+            dummy.Employees.AddRange(user1, user2, user3, user4);
 
 
             dummy.Companies.AddRange(
@@ -319,6 +319,31 @@ namespace CC2020.Data
                  EmployeeID = "4444",
                  CompanyABN = 40907025013
              });
+
+            dummy.AddRange(
+                new Payslip
+                {
+                    WeekBegininning = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek),
+                    GrossPay = 900,
+                    BaseHours = 19,
+                    SatHours = 5,
+                    Tax = 110,
+                    PayYTD = 300,
+                    EmployeeID = "3333",
+                    CompanyABN = 70102471414
+                },
+                new Payslip
+                {
+                    WeekBegininning = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek),
+                    GrossPay = 700,
+                    BaseHours = 19,
+                    SatHours = 5,
+                    Tax = 110,
+                    PayYTD = 300,
+                    EmployeeID = "4444",
+                    CompanyABN = 40907025013
+                });
+
 
             dummy.SaveChanges();
         }

@@ -28,9 +28,9 @@ namespace CC2020.Services
             PayPeriod = $"" +
                 $"{weekBeginning.ToString("d", CultureInfo.CreateSpecificCulture("es-ES"))} - " +
                 $"{weekBeginning.AddDays(7).ToString("d", CultureInfo.CreateSpecificCulture("es-ES"))}";
-            Pay = $"{pay:C2}";
-            PayYTD = $"{payYTD:C2}";
-            Tax = $"{pay * TaxRates.LOW:C2}";
+            Pay = $"{pay}";
+            PayYTD = $"{payYTD}";
+            Tax = $"{pay * TaxRates.LOW}";
             BaseHours = $"{baseHours}";
             SatHours = $"{satHours}";
             SunHours = $"{sunHours}";
