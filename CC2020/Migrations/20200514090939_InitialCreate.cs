@@ -204,6 +204,39 @@ namespace CC2020.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Payslips",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WeekBegininning = table.Column<DateTime>(nullable: false),
+                    GrossPay = table.Column<double>(nullable: false),
+                    PayYTD = table.Column<double>(nullable: false),
+                    Tax = table.Column<double>(nullable: false),
+                    BaseHours = table.Column<double>(nullable: false),
+                    SatHours = table.Column<double>(nullable: false),
+                    SunHours = table.Column<double>(nullable: false),
+                    EmployeeID = table.Column<string>(nullable: false),
+                    CompanyABN = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payslips", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Payslips_Companies_CompanyABN",
+                        column: x => x.CompanyABN,
+                        principalTable: "Companies",
+                        principalColumn: "ABN",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payslips_AspNetUsers_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Timesheets",
                 columns: table => new
                 {
@@ -283,6 +316,16 @@ namespace CC2020.Migrations
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Payslips_CompanyABN",
+                table: "Payslips",
+                column: "CompanyABN");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payslips_EmployeeID",
+                table: "Payslips",
+                column: "EmployeeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Timesheets_CompanyABN",
                 table: "Timesheets",
                 column: "CompanyABN");
@@ -312,6 +355,9 @@ namespace CC2020.Migrations
 
             migrationBuilder.DropTable(
                 name: "PayAgreements");
+
+            migrationBuilder.DropTable(
+                name: "Payslips");
 
             migrationBuilder.DropTable(
                 name: "Timesheets");

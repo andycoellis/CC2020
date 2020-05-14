@@ -15,7 +15,7 @@ namespace CC2020.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -167,6 +167,50 @@ namespace CC2020.Migrations
                     b.HasIndex("EmployeeID");
 
                     b.ToTable("PayAgreements");
+                });
+
+            modelBuilder.Entity("CC2020.Models.Payslip", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("BaseHours")
+                        .HasColumnType("float");
+
+                    b.Property<long>("CompanyABN")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("EmployeeID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("GrossPay")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PayYTD")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SatHours")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SunHours")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("WeekBegininning")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CompanyABN");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("Payslips");
                 });
 
             modelBuilder.Entity("CC2020.Models.Timesheet", b =>
@@ -349,6 +393,21 @@ namespace CC2020.Migrations
 
                     b.HasOne("CC2020.Models.Employee", "Employee")
                         .WithMany("PayAgreements")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CC2020.Models.Payslip", b =>
+                {
+                    b.HasOne("CC2020.Models.Company", "Company")
+                        .WithMany("Payslips")
+                        .HasForeignKey("CompanyABN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CC2020.Models.Employee", "Employee")
+                        .WithMany("Payslips")
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

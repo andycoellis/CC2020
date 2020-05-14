@@ -12,17 +12,10 @@ namespace CC2020.Models
         [Key]
         public int ID { get; set; }
 
-        private DateTime _scheduleDate;
-
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime Date
-        {
-            get => _scheduleDate.Date;
-
-            set => _scheduleDate = value.Date;
-        }
+        public DateTime Date { get; set; }
 
         [Required]
         public TimeSpan StartTime { get; set; }

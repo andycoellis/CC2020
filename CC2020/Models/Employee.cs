@@ -38,5 +38,6 @@ namespace CC2020.Models
         //Associated Models
         public virtual ICollection<Timesheet> Timesheets { get; set; }
         public virtual ICollection<PayAgreement> PayAgreements { get; set; }
+        public virtual ICollection<Payslip> Payslips { get; set; }
     }
 }
