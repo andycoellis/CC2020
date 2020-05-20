@@ -1,5 +1,58 @@
-﻿@{
+﻿@model CC2020.Models.Payslip
+@{
     var title = ViewData["Title"] = "Payslip Create";
 }
+@using X.PagedList.Mvc.Core.Common;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 
-<h1>@title To be implemented</h1>
+<link rel="stylesheet" href="~/css/PagedList.css" />
+
+@foreach (Payslip payslip in ViewBag.onePageOfPayslips)
+{
+    <div class="row">
+        <table class="table">
+            <tr class="row">
+                <th class="col-md-6">@Html.DisplayNameFor(x => x.ID)</th>
+                <th class="col-md-6">@Html.DisplayFor(x => payslip.ID)</th>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.WeekBegininning)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.WeekBegininning)</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.GrossPay)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.GrossPay)</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.PayYTD)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.PayYTD)</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.Tax)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.Tax)</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.BaseHours)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.BaseHours)</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.SatHours)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.SatHours)</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-6">@Html.DisplayNameFor(x => x.SunHours)</td>
+                <td class="col-md-6">@Html.DisplayFor(x => payslip.SunHours)</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+}
+
+@Html.PagedListPager((IPagedList)ViewBag.onePageOfPayslips, page => Url.Action("Create", "Payslip", new { ViewBag.CompanyName, ViewBag.ID, page }), PagedListRenderOptions.MinimalWithItemCountText)
+
+<a asp-controller="Payslip" asp-action="Index">Back to Payslips</a>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

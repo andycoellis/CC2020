@@ -94,25 +94,7 @@ namespace CC2020.Data
             user4.PasswordHash = hasher.HashPassword(user4, "Testing88!");
             user4.SecurityStamp = Guid.NewGuid().ToString();
 
-            var user5 = new Employee
-            {
-                Id = "9999",
-                Name = "Andrew Ellis",
-                UserName = "Andy",
-                NormalizedUserName = "ANDYCOELLIS@GMAIL.COM",
-                Email = "andycoellis@gmail.com",
-                NormalizedEmail = "ANDYCOELLIS@GMAIL.COM",
-                TFN = "987654323",
-                Address = "40 50 High Street",
-                City = "Carlton",
-                State = "VIC",
-                PostCode = "3053",
-                EmailConfirmed = true
-            };
-            user5.PasswordHash = hasher.HashPassword(user4, "Testing88!");
-            user5.SecurityStamp = Guid.NewGuid().ToString();
-
-            dummy.Employees.AddRange(user1, user2, user3, user4, user5);
+            dummy.Employees.AddRange(user1, user2, user3, user4);
 
 
             dummy.Companies.AddRange(
@@ -190,219 +172,155 @@ namespace CC2020.Data
                     PublicHolidayRate = 1.2,
                     EmployeeID = "4444",
                     CompanyABN = 40907025013
-                },
-                new PayAgreement
-                {
-                    DateCreated = DateTime.Now,
-                    PayRate = 30,
-                    SaturdayRate = 1.25,
-                    SundayRate = 1.5,
-                    PublicHolidayRate = 2,
-                    EmployeeID = "9999",
-                    CompanyABN = 40907025013
                 });
 
             dummy.Timesheets.AddRange(
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 12),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(13, 45, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 13),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(15, 30, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 14),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(16, 0, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 15),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(14, 0, 0),
-                     Break = new TimeSpan(0, 0, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 12),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(13, 45, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "1111",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 13),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(15, 30, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "1111",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 16),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(16, 0, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "1111",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 13),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(14, 0, 0),
-                     Break = new TimeSpan(0, 0, 0),
-                     EmployeeID = "1111",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 13),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(13, 45, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "3333",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 14),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(15, 30, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "3333",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 16),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(16, 0, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "3333",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 18),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(14, 0, 0),
-                     Break = new TimeSpan(0, 0, 0),
-                     EmployeeID = "3333",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 13),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(13, 45, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 40907025013
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 14),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(15, 30, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 40907025013
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 16),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(16, 0, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 40907025013
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 17),
-                     StartTime = new TimeSpan(6, 30, 0),
-                     EndTime = new TimeSpan(14, 0, 0),
-                     Break = new TimeSpan(0, 0, 0),
-                     EmployeeID = "4444",
-                     CompanyABN = 40907025013
-                 },
-                new Timesheet
-                {
-                    Date = new DateTime(2020, 5, 17),
-                    StartTime = new TimeSpan(6, 30, 0),
-                    EndTime = new TimeSpan(14, 0, 0),
-                    Break = new TimeSpan(0, 0, 0),
-                    EmployeeID = "4444",
-                    CompanyABN = 40907025013
-                },
-                new Timesheet
-                {
-                    Date = new DateTime(2020, 5, 18),
-                    StartTime = new TimeSpan(6, 30, 0),
-                    EndTime = new TimeSpan(14, 0, 0),
-                    Break = new TimeSpan(0, 0, 0),
-                    EmployeeID = "9999",
-                    CompanyABN = 40907025013
-                },
-                new Timesheet
-                {
-                    Date = new DateTime(2020, 5, 19),
-                    StartTime = new TimeSpan(7, 30, 0),
-                    EndTime = new TimeSpan(15, 0, 0),
-                    Break = new TimeSpan(1, 0, 0),
-                    EmployeeID = "9999",
-                    CompanyABN = 40907025013
-                },
-                new Timesheet
-                {
-                    Date = new DateTime(2020, 5, 20),
-                    StartTime = new TimeSpan(6, 30, 0),
-                    EndTime = new TimeSpan(14, 0, 0),
-                    Break = new TimeSpan(0, 30, 0),
-                    EmployeeID = "9999",
-                    CompanyABN = 40907025013
-                },
-                new Timesheet
-                {
-                    Date = new DateTime(2020, 5, 21),
-                    StartTime = new TimeSpan(11, 30, 0),
-                    EndTime = new TimeSpan(16, 0, 0),
-                    Break = new TimeSpan(0, 30, 0),
-                    EmployeeID = "9999",
-                    CompanyABN = 40907025013
-                },
-                new Timesheet
-                {
-                    Date = new DateTime(2020, 5, 23),
-                    StartTime = new TimeSpan(6, 00, 0),
-                    EndTime = new TimeSpan(13, 30, 0),
-                    Break = new TimeSpan(0, 03, 0),
-                    EmployeeID = "9999",
-                    CompanyABN = 40907025013
-                });
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 12),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(13, 45, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 13),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(15, 30, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 14),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(16, 0, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 15),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(14, 0, 0),
+                 Break = new TimeSpan(0, 0, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 12),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(13, 45, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "1111",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 13),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(15, 30, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "1111",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 16),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(16, 0, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "1111",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 13),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(14, 0, 0),
+                 Break = new TimeSpan(0, 0, 0),
+                 EmployeeID = "1111",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 13),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(13, 45, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "3333",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 14),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(15, 30, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "3333",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 16),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(16, 0, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "3333",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 18),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(14, 0, 0),
+                 Break = new TimeSpan(0, 0, 0),
+                 EmployeeID = "3333",
+                 CompanyABN = 70102471414
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 13),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(13, 45, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 40907025013
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 14),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(15, 30, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 40907025013
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 16),
+                 StartTime = new TimeSpan(7, 0, 0),
+                 EndTime = new TimeSpan(16, 0, 0),
+                 Break = new TimeSpan(0, 30, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 40907025013
+             },
+             new Timesheet
+             {
+                 Date = new DateTime(2020, 5, 17),
+                 StartTime = new TimeSpan(6, 30, 0),
+                 EndTime = new TimeSpan(14, 0, 0),
+                 Break = new TimeSpan(0, 0, 0),
+                 EmployeeID = "4444",
+                 CompanyABN = 40907025013
+             });
 
-            dummy.AddRange(
+            dummy.Payslips.AddRange(
                 new Payslip
                 {
                     WeekBegininning = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek),
@@ -425,6 +343,8 @@ namespace CC2020.Data
                     EmployeeID = "4444",
                     CompanyABN = 40907025013
                 });
+
+
             dummy.SaveChanges();
         }
     }
