@@ -23,5 +23,12 @@ namespace CC2020.Data.Repositories
                 .ThenInclude(x => x.Company)
                 .SingleOrDefault(x => x.Id == id).PayAgreements;
         }
+
+        public IEnumerable<Payslip> GetEmployeePaySlips(string id)
+        {
+            return Context.Employees.Include(x => x.Payslips)
+                .ThenInclude(x => x.Company)
+                .SingleOrDefault(x => x.Id == id).Payslips;
+        }
     }
 }
