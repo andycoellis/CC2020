@@ -259,7 +259,7 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 16),
+                     Date = new DateTime(2020, 5, 23),
                      StartTime = new TimeSpan(7, 0, 0),
                      EndTime = new TimeSpan(16, 0, 0),
                      Break = new TimeSpan(0, 30, 0),
@@ -268,7 +268,7 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 13),
+                     Date = new DateTime(2020, 5, 20),
                      StartTime = new TimeSpan(6, 30, 0),
                      EndTime = new TimeSpan(14, 0, 0),
                      Break = new TimeSpan(0, 0, 0),
@@ -277,27 +277,9 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 13),
+                     Date = new DateTime(2020, 5, 20),
                      StartTime = new TimeSpan(6, 30, 0),
                      EndTime = new TimeSpan(13, 45, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "3333",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 14),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(15, 30, 0),
-                     Break = new TimeSpan(0, 30, 0),
-                     EmployeeID = "3333",
-                     CompanyABN = 70102471414
-                 },
-                 new Timesheet
-                 {
-                     Date = new DateTime(2020, 5, 16),
-                     StartTime = new TimeSpan(7, 0, 0),
-                     EndTime = new TimeSpan(16, 0, 0),
                      Break = new TimeSpan(0, 30, 0),
                      EmployeeID = "3333",
                      CompanyABN = 70102471414
@@ -305,6 +287,24 @@ namespace CC2020.Data
                  new Timesheet
                  {
                      Date = new DateTime(2020, 5, 18),
+                     StartTime = new TimeSpan(7, 0, 0),
+                     EndTime = new TimeSpan(15, 30, 0),
+                     Break = new TimeSpan(0, 30, 0),
+                     EmployeeID = "3333",
+                     CompanyABN = 70102471414
+                 },
+                 new Timesheet
+                 {
+                     Date = new DateTime(2020, 5, 18),
+                     StartTime = new TimeSpan(7, 0, 0),
+                     EndTime = new TimeSpan(16, 0, 0),
+                     Break = new TimeSpan(0, 30, 0),
+                     EmployeeID = "3333",
+                     CompanyABN = 70102471414
+                 },
+                 new Timesheet
+                 {
+                     Date = new DateTime(2020, 5, 19),
                      StartTime = new TimeSpan(6, 30, 0),
                      EndTime = new TimeSpan(14, 0, 0),
                      Break = new TimeSpan(0, 0, 0),
@@ -313,7 +313,7 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 13),
+                     Date = new DateTime(2020, 5, 20),
                      StartTime = new TimeSpan(6, 30, 0),
                      EndTime = new TimeSpan(13, 45, 0),
                      Break = new TimeSpan(0, 30, 0),
@@ -322,7 +322,7 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 14),
+                     Date = new DateTime(2020, 5, 20),
                      StartTime = new TimeSpan(7, 0, 0),
                      EndTime = new TimeSpan(15, 30, 0),
                      Break = new TimeSpan(0, 30, 0),
@@ -331,7 +331,7 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 16),
+                     Date = new DateTime(2020, 5, 21),
                      StartTime = new TimeSpan(7, 0, 0),
                      EndTime = new TimeSpan(16, 0, 0),
                      Break = new TimeSpan(0, 30, 0),
@@ -340,7 +340,7 @@ namespace CC2020.Data
                  },
                  new Timesheet
                  {
-                     Date = new DateTime(2020, 5, 17),
+                     Date = new DateTime(2020, 5, 22),
                      StartTime = new TimeSpan(6, 30, 0),
                      EndTime = new TimeSpan(14, 0, 0),
                      Break = new TimeSpan(0, 0, 0),
@@ -349,7 +349,7 @@ namespace CC2020.Data
                  },
                 new Timesheet
                 {
-                    Date = new DateTime(2020, 5, 17),
+                    Date = new DateTime(2020, 5, 23),
                     StartTime = new TimeSpan(6, 30, 0),
                     EndTime = new TimeSpan(14, 0, 0),
                     Break = new TimeSpan(0, 0, 0),
