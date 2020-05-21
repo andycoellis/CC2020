@@ -1,0 +1,24 @@
+﻿@model CC2020.Models.Employee
+@{
+    var title = ViewData["Title"] = "Payslip Index";
+}
+
+<h2>Payslips for User @ViewBag.userId</h2>
+
+<table class="table">
+    <tr>
+        <th>Company Name</th>
+        <th>Payslips</th>
+    </tr>
+    @foreach (string company in ViewBag.companies)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => company)</td>
+            <td>
+                <a class="btn btn-primary" asp-action="Create" asp-route-companyName="@company" asp-route-userID="@ViewBag.userId">Payslips</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-controller="Home" asp-action="Index">Back to Home</a>

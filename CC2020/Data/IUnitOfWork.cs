@@ -9,6 +9,7 @@ namespace CC2020.Data
         IEmployeeRepository Employees { get; }
         IPayAgreementRepository PayAgreements { get; }
         ITimesheetRepository Timesheets { get; }
+        IPayslipRepository Payslips { get; }
         int Complete();
     }
 }

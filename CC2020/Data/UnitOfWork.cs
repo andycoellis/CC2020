@@ -15,12 +15,14 @@ namespace CC2020.Data
             Employees = new EmployeeRepository(_context);
             PayAgreements = new PayAgreementRepository(_context);
             Timesheets = new TimesheetRepository(_context);
+            Payslips = new PayslipRepository(_context);
         }
 
         public ICompanyRepository Companies { get; private set; }
         public IEmployeeRepository Employees { get; private set; }
         public IPayAgreementRepository PayAgreements { get; private set; }
         public ITimesheetRepository Timesheets { get; private set; }
+        public IPayslipRepository Payslips { get; private set; }
 
         public int Complete()
         {

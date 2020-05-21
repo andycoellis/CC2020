@@ -2,22 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace CC2020.Models
 {
-    public class Employee
+    public class Employee : IdentityUser
     {
-        //Employee Properties
-        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Range(1e3, 1e4 - 1)]
-        public int EmployeeID { get; set; }
+        public Employee() : base() { }
 
-        [Required]
         [MaxLength(40), RegularExpression(@"^[^\s][A-Za-z\s]+[^\s]$")]
         public string Name { get; set; }
-
-        [Required]
-        public DateTime DOB { get; set; }
 
         //Identification Purposes Only
         [StringLength(9), RegularExpression(@"^[\d]+$", ErrorMessage = "An Individual TFN can only be 9 digits long")]
@@ -44,5 +38,6 @@ namespace CC2020.Models
         //Associated Models
         public virtual ICollection<Timesheet> Timesheets { get; set; }
         public virtual ICollection<PayAgreement> PayAgreements { get; set; }
+        public virtual ICollection<Payslip> Payslips { get; set; }
     }
 }

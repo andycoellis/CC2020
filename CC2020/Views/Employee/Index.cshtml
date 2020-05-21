@@ -1,0 +1,61 @@
+﻿@model CC2020.Models.Employee
+
+@{
+    var title = ViewData["Title"] = "Employee";
+}
+
+<div class="container content-card">
+    @if (Model.Name == null)
+    {
+        <div class="container content-title text-left">
+            <h1 class="display-4">Please Complete Your Profile</h1>
+
+            <a class="btn btn-primary" asp-action="Edit" asp-route-Id="@Model.Id">Edit</a>
+        </div>
+
+    }
+    else
+    {
+        <div class="container content-title text-left">
+            <h1 class="display-4">@Model.Name</h1>
+
+
+        </div>
+        <div class="container content-body">
+            <div class="container">
+
+                <p class="profile-title">@Html.DisplayNameFor(x => x.Address):</p>
+
+                <div class="profile-content">
+                    <p>@Html.DisplayFor(x => x.Address)</p>
+                    <p>@Html.DisplayFor(x => x.City)</p>
+                    <p>@Html.DisplayFor(x => x.State)</p>
+                    <p>@Html.DisplayFor(x => x.PostCode)</p>
+                </div>
+
+            </div>
+
+            <div class="container">
+
+                <p class="profile-title">@Html.DisplayNameFor(x => x.TFN):</p>
+
+                <div class="profile-content">
+                    @if (Model.TFN == null)
+                    {<p>Empty</p> }
+                    else
+                    { <p>@Html.DisplayFor(x => x.TFN)</p>}
+                </div>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-Id="@Model.Id">Edit</a>
+
+            </div>
+
+        </div>
+        <div class="container tag-base">
+            <a asp-controller="Home" asp-action="Index">Back to Home</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

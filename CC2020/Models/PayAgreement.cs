@@ -33,11 +33,11 @@ namespace CC2020.Models
 
         //Agreement Foreign Keys
         [Required]
-        public int EmployeeID { get; set; }
+        public string EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }
 
         [Required]
-        public long CompanyID { get; set; }
+        public long CompanyABN { get; set; }
         public virtual Company Company { get; }
     }
 }

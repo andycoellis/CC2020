@@ -21,9 +21,12 @@ namespace CC2020.Models
         [RegularExpression(@"^\b[\dA-Za-z\s\-\,\\]+\b$")]
         public string Address { get; set; }
 
+        [Required, DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
         //Company Associations
         public virtual ICollection<PayAgreement> PayAgreements { get; set; }
         public virtual ICollection<Timesheet> Timesheets { get; set; }
+        public virtual ICollection<Payslip> Payslips { get; set; }
     }
 }
