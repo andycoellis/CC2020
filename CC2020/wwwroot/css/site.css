@@ -69,3 +69,39 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* LoggedIn action links
+-------------------------------------------------- */
+.nav-links-shadow {
+    box-shadow: 1px 1px 1px grey;
+    margin-left: 2px;
+    background-color: hsla(120, 60%, 70%, 0.2);
+}
+
+/* Content Containers
+-------------------------------------------------- */
+.content-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 30px;
+    width: 80%;
+}
+
+.content-title {
+    box-shadow: 1px 1px 1px grey;
+    margin-left: 2px;
+    background-color: hsla(120, 60%, 70%, 0.2);
+}
+
+.profile-title {
+    padding-top: 10px;
+}
+
+.profile-content p {
+    padding-left: 10px;
+    margin-top: -8px;
+}
+
+.Image {
+    max_width: 100%;
+    height: auto;
+}
