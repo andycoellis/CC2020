@@ -44,6 +44,7 @@ namespace CC2020.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 ViewBag.userId = userId;
+                ViewBag.name = unitOfWork.Employees.SingleOrDefault(x => x.Id == userId).Name;
 
                 var payAgreements = unitOfWork.Employees.GetEmployeePayAgreements(userId);
 
