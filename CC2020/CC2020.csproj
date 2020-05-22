@@ -25,6 +25,7 @@
     <Content Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
     <Content Remove="Areas\Identity\Pages\Error.cshtml" />
     <Content Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Remove="wwwroot\img\cafe.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Repositories\" />
@@ -34,5 +35,9 @@
     <Folder Include="Views\Timesheet\" />
     <Folder Include="Views\PayAgreement\" />
     <Folder Include="Views\Employee\" />
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\img\cafe.jpg" />
   </ItemGroup>
 </Project>
